@@ -1,0 +1,36 @@
+name: Check upstream drift
+
+on:
+  schedule:
+    - cron: "23 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compare reviewed pins with upstream
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/check_upstreams.py
+      - name: Open reviewable drift report
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          branch: automation/upstream-drift
+          delete-branch: true
+          add-paths: reports/upstream-drift.md
+          commit-message: "docs: report upstream source drift"
+          title: "Review upstream source drift"
+          body: |
+            This PR reports upstream default-branch commits newer than the reviewed pins.
+
+            It does not change `sources.json`, enable sources, install packages, or execute upstream code. Review each upstream change and update pins manually if appropriate.
