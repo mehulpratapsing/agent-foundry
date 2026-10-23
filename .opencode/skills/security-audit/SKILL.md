@@ -2,7 +2,7 @@
 name: security-audit
 description: Plan or perform a scoped security review; use Strix only when explicitly requested and the target is authorized.
 license: MIT
-compatibility: OpenCode; Strix must be installed separately and configured according to its upstream documentation.
+compatibility: OpenCode; Strix source is vendored under upstream/strix, but runtime dependencies are not installed by this toolkit.
 ---
 
 # Security audit
@@ -15,4 +15,4 @@ Use for a security review of code, an API, or an application. Begin with a read-
 4. Report findings with evidence, impact, reproduction conditions, and practical remediation. Distinguish confirmed findings from hypotheses.
 5. Do not expose secrets or include sensitive data unnecessarily in reports.
 
-Upstream reference: [Strix](https://github.com/usestrix/strix). This toolkit neither installs it nor starts scans automatically.
+Upstream reference: [Strix](https://github.com/usestrix/strix), vendored at `upstream/strix`. This toolkit neither installs runtime dependencies nor starts scans automatically.

@@ -38,9 +38,36 @@ def load_manifest() -> list[dict[str, object]]:
         pinned = source.get("pinned_commit", "")
         if pinned and (not isinstance(pinned, str) or not SHA_RE.fullmatch(pinned)):
             raise ValueError(f"{source_id}: pinned_commit must be a full 40-character SHA or empty")
+        upstream_path = source.get("upstream_path")
+        if not isinstance(upstream_path, str) or not upstream_path:
+            raise ValueError(f"{source_id}: upstream_path must identify its vendored source tree")
+        vendored = (ROOT / upstream_path).resolve()
+        if ROOT.resolve() not in vendored.parents or not vendored.is_dir():
+            raise ValueError(f"{source_id}: vendored source directory is missing or escapes the toolkit: {upstream_path}")
         if not isinstance(source.get("enabled"), bool):
             raise ValueError(f"{source_id}: enabled must be boolean")
     return sources
+
+
+def validate_profiles() -> int:
+    count = 0
+    for profile in sorted((ROOT / "profiles").glob("*.json")):
+        config = json.loads(profile.read_text(encoding="utf-8"))
+        skills = config.get("skills", [])
+        if isinstance(skills, dict):
+            paths = skills.get("paths", [])
+        elif isinstance(skills, list):
+            paths = skills
+        else:
+            raise ValueError(f"{profile.name}: skills must be an array or an object with paths")
+        if not isinstance(paths, list) or not all(isinstance(path, str) for path in paths):
+            raise ValueError(f"{profile.name}: skill paths must be strings")
+        for path in paths:
+            target = (ROOT / path).resolve()
+            if ROOT.resolve() not in target.parents or not target.is_dir():
+                raise ValueError(f"{profile.name}: skill source is missing or escapes the toolkit: {path}")
+        count += 1
+    return count
 
 
 def github_repo(url: str) -> str:
@@ -71,7 +98,8 @@ def main() -> int:
     args = parser.parse_args()
 
     sources = load_manifest()
-    print(f"Manifest valid: {len(sources)} sources")
+    profiles = validate_profiles()
+    print(f"Manifest valid: {len(sources)} vendored sources; {profiles} profiles valid")
     if args.offline:
         return 0
 
