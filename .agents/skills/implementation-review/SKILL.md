@@ -2,7 +2,7 @@
 name: implementation-review
 description: Implement a scoped change in small steps, then review the diff and report validation evidence.
 license: MIT
-compatibility: OpenCode; toolkit-authored workflow informed by ECC and Superpowers.
+compatibility: Agent Skills format; Codex, Gemini CLI, OpenCode, Cursor, and GitHub Copilot. Toolkit-authored workflow informed by ECC and Superpowers.
 ---
 
 # Implementation and review

@@ -2,7 +2,7 @@
 name: project-planning
 description: Turn a feature or substantial change into a decision-complete, reviewable plan before implementation.
 license: MIT
-compatibility: OpenCode; toolkit-authored workflow informed by Superpowers.
+compatibility: Agent Skills format; Codex, Gemini CLI, OpenCode, Cursor, and GitHub Copilot. Toolkit-authored workflow informed by Superpowers.
 ---
 
 # Project planning

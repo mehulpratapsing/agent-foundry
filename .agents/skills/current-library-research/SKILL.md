@@ -2,7 +2,7 @@
 name: current-library-research
 description: Check current, version-specific library and framework documentation before choosing or implementing APIs; discover candidate projects when asked.
 license: MIT
-compatibility: OpenCode with the Context7 remote MCP configured by this repository; web research may be used for discovery.
+compatibility: Agent Skills format; Codex, Gemini CLI, OpenCode, Cursor, and GitHub Copilot. Context7 MCP is configured in the OpenCode base config; other harnesses can use the native templates under adapters/mcp/templates.
 ---
 
 # Current library research

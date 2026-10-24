@@ -2,7 +2,7 @@
 name: codebase-understanding
 description: Map an unfamiliar or cross-cutting codebase before making changes, using repository inspection first and Graphify when useful.
 license: MIT
-compatibility: OpenCode; Graphify source is vendored under upstream/graphify, but its runtime dependencies are not installed by this toolkit.
+compatibility: Agent Skills format; Codex, Gemini CLI, OpenCode, Cursor, and GitHub Copilot. Graphify runtime is optional and separately installed.
 ---
 
 # Codebase understanding

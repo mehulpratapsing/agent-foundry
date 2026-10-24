@@ -1,0 +1,4 @@
+# Optional project-scoped Codex MCP adapter. Copy into .codex/config.toml only after review.
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+enabled = true

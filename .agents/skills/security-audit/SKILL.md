@@ -2,7 +2,7 @@
 name: security-audit
 description: Plan or perform a scoped security review; use Strix only when explicitly requested and the target is authorized.
 license: MIT
-compatibility: OpenCode; Strix source is vendored under upstream/strix, but runtime dependencies are not installed by this toolkit.
+compatibility: Agent Skills format; Codex, Gemini CLI, OpenCode, Cursor, and GitHub Copilot. Strix runtime is optional and separately installed.
 ---
 
 # Security audit
