@@ -97,6 +97,12 @@ The profile applies only to that OpenCode process. To return to the base configu
 - **Provenance and update policy — [`sources.json`](sources.json).** Record repository, revision, license, compatibility, and integration status.
 - **Verification — [`scripts/`](scripts/) and [`tests/`](tests/).** Check config, generated adapters, profile shape, and expected repository invariants.
 
+### One rulebook across coding agents
+
+[`AGENTS.md`](AGENTS.md) is canonical. OpenCode, Codex, Cursor, Roo Code, Zed, and Qwen Code use it directly; Claude Code and Gemini CLI import it through `CLAUDE.md` and `GEMINI.md`. Generated native rule files are provided for GitHub Copilot, Continue, Amazon Q, and Aider. Cline and Windsurf have documented compatibility limits.
+
+The shared rules guide every task. Specialist upstream packs stay opt-in through OpenCode profiles; use one profile at a time. See the [harness compatibility matrix](docs/harness-compatibility.md) for exact entry points, skill and MCP support, and tested status for each client.
+
 ## Current information, without the hype
 
 - **Context7** retrieves version-aware documentation for a library you ask about. It is a documentation service, not a live feed of newly released libraries.
