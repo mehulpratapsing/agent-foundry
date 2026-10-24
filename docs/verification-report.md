@@ -64,6 +64,20 @@ The four safe profile exercises used these commands (all model runs used `openco
 
 The outputs and remaining checks are captured in the [sanitized evidence log](verification-evidence-2026-10-24.md).
 
+## Follow-up after the Fieldnote workflow trial
+
+The follow-up added the `tool-discovery` skill, clarified output contracts and completion checks for all six shared skills, and added regression checks for those contracts. The current OpenCode run discovered all six skills. These results supersede the skill count above; the earlier five-skill lines remain as an accurate record of the earlier run.
+
+```text
+python scripts/generate_adapters.py --check       PASS, 15 generated files current
+python scripts/verify_toolkit.py --static         PASS, six skills/contracts and source/profile invariants
+python -m unittest discover -s tests -v           PASS, 6 tests
+python scripts/verify_toolkit.py --opencode       PASS, root, all six profiles, all six local skills discovered
+git diff --check                                  PASS, only expected Windows line-ending notices
+```
+
+The separate detailed implementation log is [`fieldnote-skill-trial-2026-10-24.md`](fieldnote-skill-trial-2026-10-24.md). It records the test project's implementation, defects found, validation, and limits; the fixture itself is not part of this repository.
+
 ## Cross-harness status
 
 OpenCode and Codex were the only installed harnesses, and both instruction-loading smoke tests passed. Other rows in [harness-compatibility.md](harness-compatibility.md) are static documentation/schema compatibility checks only; their runtimes were unavailable and are marked NOT RUN. No personal client MCP configuration was modified.

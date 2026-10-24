@@ -63,7 +63,9 @@ python -m unittest discover -s tests -v
 - **Plan and deliver a feature — `superpowers`.** Superpowers planning and execution skills, with ponytail’s simplicity guidance.
 - **Use broad coding practices — `ecc`.** ECC skills and rules, loaded as a selectable profile.
 - **Research across the web — `research`.** Agent Reach and Firecrawl integration; review Firecrawl’s AGPL-3.0 terms before enabling it.
+- **Check a library API — `current-library-research`.** Retrieve version-aware docs for the actual dependency before changing APIs; Context7 is configured in the base OpenCode config.
 - **Understand a codebase — `codebase-understanding`.** A local skill with Graphify guidance; install and run Graphify separately when needed.
+- **Find new tools — `tool-discovery`.** Compare candidates against primary sources, maintenance, license, setup, permissions, and fit; it does not install or enable them.
 - **Review security — `security`.** Strix workflow for explicitly requested testing within an authorized scope.
 - **Work on product, QA, or release tasks — `gstack`.** gstack skills; review its setup and hooks first.
 - **Keep agent memory — `memory`.** claude-mem skills; its services require separate setup.
@@ -91,11 +93,12 @@ The profile applies only to that OpenCode process. To return to the base configu
 
 - **Shared operating protocol — [`AGENTS.md`](AGENTS.md).** One source of truth for planning, implementation, review, safety, and tool choice.
 - **Harness adapters — [`adapters/`](adapters/) and root config files.** Keep supported coding agents aligned with the canonical rules.
-- **Reusable local skills — [`.agents/skills/`](.agents/skills/).** Task-focused workflows for planning, research, codebase understanding, implementation/review, and security audit.
+- **Reusable local skills — [`.agents/skills/`](.agents/skills/).** Task-focused workflows for planning, versioned library research, tool discovery, codebase understanding, implementation/review, and security audit.
 - **OpenCode profiles — [`profiles/`](profiles/).** Selectively load upstream skill packs.
 - **Pinned source snapshots — [`upstream/`](upstream/).** Preserve upstream code and notices at reviewed commit revisions.
 - **Provenance and update policy — [`sources.json`](sources.json).** Record repository, revision, license, compatibility, and integration status.
 - **Verification — [`scripts/`](scripts/) and [`tests/`](tests/).** Check config, generated adapters, profile shape, and expected repository invariants.
+- **Field trial — [`docs/fieldnote-skill-trial-2026-10-24.md`](docs/fieldnote-skill-trial-2026-10-24.md).** Detailed operations, implementation findings, skill-by-skill evaluation, validation results, and limitations from exercising the local workflows on a separate synthetic API.
 
 ### One rulebook across coding agents
 

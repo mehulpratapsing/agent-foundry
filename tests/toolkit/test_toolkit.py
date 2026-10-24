@@ -84,8 +84,24 @@ class ToolkitTests(unittest.TestCase):
             self.assertEqual(match.group(1), folder.name)
             self.assertRegex(body.split("\n---\n", 1)[0], r"(?m)^description:\s*\S")
             names.append(match.group(1))
-        self.assertEqual(len(names), 5)
+        self.assertEqual(len(names), 6)
         self.assertEqual(len(set(names)), len(names))
+        for folder in skills.iterdir():
+            with self.subTest(skill=folder.name):
+                body = (folder / "SKILL.md").read_text(encoding="utf-8")
+                self.assertIn("## Expected output", body)
+                self.assertIn("## Completion check", body)
+
+    def test_tool_discovery_is_separate_from_versioned_library_research(self) -> None:
+        research = (ROOT / ".agents/skills/current-library-research/SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        discovery = (ROOT / ".agents/skills/tool-discovery/SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("use `tool-discovery` instead", research)
+        self.assertIn("current-library-research", discovery)
+        self.assertIn("GitHub Trending", discovery)
 
 
 if __name__ == "__main__":

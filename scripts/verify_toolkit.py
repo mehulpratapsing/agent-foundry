@@ -135,6 +135,7 @@ def static_checks() -> list[str]:
     passed.append("OpenCode base and six selective profiles are structurally valid")
 
     skill_names: set[str] = set()
+    required_skill_sections = ("## Expected output", "## Completion check")
     for skill_dir in sorted(SKILLS_DIR.iterdir()):
         skill_file = skill_dir / "SKILL.md"
         if not skill_file.is_file():
@@ -149,10 +150,26 @@ def static_checks() -> list[str]:
             raise ValueError(f"skill name or description is invalid: {skill_dir.name}")
         if name.group(1) in skill_names:
             raise ValueError(f"duplicate skill name: {name.group(1)}")
+        missing_sections = [section for section in required_skill_sections if section not in body]
+        if missing_sections:
+            raise ValueError(
+                f"{skill_dir.name} is missing workflow contracts: {', '.join(missing_sections)}"
+            )
         skill_names.add(name.group(1))
-    if len(skill_names) != 5:
-        raise ValueError(f"expected five shared toolkit-authored skills, found {len(skill_names)}")
-    passed.append("five shared Agent Skills have valid names and frontmatter")
+    expected_skills = {
+        "project-planning",
+        "current-library-research",
+        "tool-discovery",
+        "codebase-understanding",
+        "implementation-review",
+        "security-audit",
+    }
+    if skill_names != expected_skills:
+        raise ValueError(
+            f"shared skill set mismatch: missing={sorted(expected_skills - skill_names)}, "
+            f"extra={sorted(skill_names - expected_skills)}"
+        )
+    passed.append("six shared Agent Skills have valid names, frontmatter, and workflow contracts")
 
     generated = expected_files()
     validate_rendered(generated)
