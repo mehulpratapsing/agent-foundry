@@ -12,7 +12,7 @@
 [![OpenCode](https://img.shields.io/badge/OpenCode-ready-111827.svg)](https://opencode.ai/)
 [![Security: opt-in](https://img.shields.io/badge/security-opt--in-f59e0b.svg)](SECURITY.md)
 [![Validation workflow](https://github.com/mehulpratapsing/agent-foundry/actions/workflows/validate.yml/badge.svg)](https://github.com/mehulpratapsing/agent-foundry/actions/workflows/validate.yml)
-[![Upstream review workflow](https://github.com/mehulpratapsing/agent-foundry/actions/workflows/upstream-drift.yml/badge.svg)](https://github.com/mehulpratapsing/agent-foundry/actions/workflows/upstream-drift.yml)
+[![Weekly upstream check](https://img.shields.io/badge/upstream-check%20weekly-8b5cf6.svg)](https://github.com/mehulpratapsing/agent-foundry/actions/workflows/upstream-drift.yml)
 
 **Bring the best specialist tools together. Keep every tool attributable, selectable, and under your control.**
 
